@@ -11,12 +11,35 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    testImplementation("org.junit.platform:junit-platform-console-standalone:1.9.2")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
+tasks {
+
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+
+}
+
 kotlin {
-    jvmToolchain(8)
+
+    sourceSets.all {
+        languageSettings {
+            version = 2.0
+        }
+    }
 }
